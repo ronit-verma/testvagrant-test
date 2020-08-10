@@ -1,4 +1,6 @@
+import json
 import time
+import objectpath
 
 import requests
 from selenium import webdriver
@@ -45,10 +47,39 @@ def test_validate_Phase2_API():
   driver.get("http://api.openweathermap.org/data/2.5/weather?q=Kanpur&appid=7fe67bf08c80ded756e598d6f8fedaea")
   resp = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Kanpur&appid=7fe67bf08c80ded756e598d6f8fedaea')
   assert  resp.status_code == 200
-  assert resp.json()["name"] == 'Kanpur'
-  print(resp.text)
+  # assert resp.json()["name"] == 'Kanpur'
+  # tempe = resp.json()["temp"]
+  # print(tempe)
+  # print(resp.text)
 
-#def test_compare_API_UI_weather():
+  # data = json.loads(resp.text)
+  #
+  # print(data)
+  # json_object = json.loads(resp.text)
+  # print(json_object["base"])
+  # temp_dict = "main" in data
+  # print(temp_dict)
+
+  data = json.loads(resp.text)
+
+  jsonn_tree = objectpath.Tree(data['main'])
+  result_tuple = tuple(jsonn_tree.execute('$..temp'))
+  print(result_tuple)
+
+
+# def test_compare_API_UI_weather():
+#
+#     #For API
+#     driver.get("http://api.openweathermap.org/data/2.5/weather?q=Kanpur&appid=7fe67bf08c80ded756e598d6f8fedaea")
+#     resp = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Kanpur&appid=7fe67bf08c80ded756e598d6f8fedaea')
+#
+#     data = json.loads(resp.text)
+#
+#     jsonn_tree = objectpath.Tree(data['main'])
+#     result_tuple = tuple(jsonn_tree.execute('$..temp'))
+#     print(result_tuple)
+
+
 
 
 
