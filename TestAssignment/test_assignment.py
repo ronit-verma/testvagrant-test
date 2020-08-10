@@ -133,10 +133,12 @@ def test_compare_API_UI_weather():
     print("The variance of list is"  +  str(variance))
     print(type(variance))
 
-    if (int(variance) < 2.0):
-        print("The test is pass")
-    else:
-        print("The test failed")
+    assert int(variance) < 2.0
+
+    # if (int(variance) < 2.0):
+    #     print("The test is pass")
+    # else:
+    #     print("The test failed")
 
 
 
