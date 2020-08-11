@@ -159,13 +159,15 @@ def test_compare_API_UI_weather():
 def test_testing(inputdata):
    input1 =inputdata[0]
    input2 = inputdata[1]
+
+   locator = "http://api.openweathermap.org/data/2.5/weather?q="+input2+"&appid=7fe67bf08c80ded756e598d6f8fedaea"
    # print(input1)
-   driver.get("http://api.openweathermap.org/data/2.5/weather?q=Kanpur&appid=7fe67bf08c80ded756e598d6f8fedaea")
-   resp = requests.get(
-       'http://api.openweathermap.org/data/2.5/weather?q=Kanpur&appid=7fe67bf08c80ded756e598d6f8fedaea')
+   driver.get(locator)
+   time.sleep(5)
+
+   resp = requests.get(locator)
    assert resp.status_code == 200
    json_data = json.loads(resp.text)
-
 
 
    res1 = json_data['main']['temp']
