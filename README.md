@@ -16,7 +16,7 @@ It captures the weather temperature from one website stores it in one object, ta
 
 ##TODO
 
-`Configure CI-CD pipeline
+`Configure CI-CD pipeline and
 Reporting`
 
 
