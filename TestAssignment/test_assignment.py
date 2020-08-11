@@ -29,8 +29,6 @@ def dp_pandas():
 @pytest.mark.parametrize('inputdata', dp_pandas())
 def test_testing(inputdata):
 
-   dateTimer = str(datetime.datetime.now().time())
-   print("the current time is ", dateTimer)
    input1 =inputdata[0]
    input2 = inputdata[1]
    print("The City under test for weather condition is" , input2)
