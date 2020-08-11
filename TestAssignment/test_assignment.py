@@ -1,5 +1,6 @@
 import json
 import math
+import os
 import re
 import statistics
 import time
@@ -18,7 +19,8 @@ def setup():
 
 def dp_pandas():
 
-    xlpath = "C:/Users/ronit/Desktop/GitHub/testvagrant-test/TestAssignment/cityNames.xlsx"
+    xlpath = (os.getcwd() + '\cityNames.xlsx')
+
     df = pd.read_excel(xlpath, 'Sheet1')
     lol = df.values.tolist()
     return lol
@@ -77,7 +79,7 @@ def test_testing(inputdata):
 
    print("The variance of list is" + str(variance))
 
-   assert int(variance) < 2.0
+   assert int(variance) < 3.0
 
 def teardown():
     print('Inside teardown method')
