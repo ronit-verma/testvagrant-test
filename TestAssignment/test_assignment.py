@@ -7,6 +7,7 @@ import time
 import pandas as pd
 import pytest
 import requests
+import datetime
 from selenium import webdriver
 
 def setup():
@@ -28,12 +29,17 @@ def dp_pandas():
 @pytest.mark.parametrize('inputdata', dp_pandas())
 def test_testing(inputdata):
 
+   dateTimer = str(datetime.datetime.now().time())
+   print("the current time is ", dateTimer)
    input1 =inputdata[0]
    input2 = inputdata[1]
    print("The City under test for weather condition is" , input2)
    locator = "http://api.openweathermap.org/data/2.5/weather?q="+input2+"&appid=7fe67bf08c80ded756e598d6f8fedaea"
 
+
    driver.get(locator)
+   path = "./Screenshots/" + input2 +"API.png"
+   driver.save_screenshot(path)
    time.sleep(2)
 
    resp = requests.get(locator)
@@ -63,7 +69,9 @@ def test_testing(inputdata):
            cities.click()
            locator = "//div[@title = '"+expCity+"']/div/span[1]"
            tempUI = driver.find_element_by_xpath(locator).text
-           driver.save_screenshot("cityFound.png")
+           #driver.save_screenshot(' \Screenshots" \ '+expCity+'UI.png "')
+           path = "./Screenshots/"+expCity+"UI.png"
+           driver.save_screenshot(path)
            time.sleep(3)
 
    time.sleep(3)
